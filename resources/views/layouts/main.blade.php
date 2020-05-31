@@ -35,16 +35,20 @@
         *********************************************************************************************************************************************************** -->
     <!--header start-->
     <header class="header black-bg">
-
-        <!--logo start-->
         <a href="/dashboard" class="logo"><b>NPONTU</b></a>
-{{--        <img src="{{asset('img/npontu.png')}}">--}}
-        <!--logo end-->
 
-        <div class="top-menu">
-            <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="login.html">Logout</a></li>
-            </ul>
+        <div class="mt-3 pull-right">
+            <div class="col-xs-12">
+                        <a class="text-danger" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    <div class="fas fa-sign-out-alt fa-lg text-danger"></div>
+            </div>
         </div>
     </header>
     <!--header end-->
@@ -53,24 +57,24 @@
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-        <div id="sidebar" class="nav-collapse ">
+        <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->
-            <ul class="sidebar-menu" id="nav-accordion">
+            <ul class="nav sidebar-menu" id="nav-accordion">
                 <p class="centered"><a href="/profile"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-                <h5 class="centered">Sam Soffes</h5>
-                <li class="mt">
-                    <a class="active" href="/dashboard">
+                <h5 class="mt-3 centered">Hello {{Auth::user()->username}}</h5>
+                <li class="{{'dashboard' == request()->path() ? 'current' : ''}}">
+                    <a href="/dashboard">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li>
+                <li class="{{'profile' == request()->path() ? 'current' : ''}}">
                     <a href="/profile">
                         <i class="fa fa-user"></i>
                         <span>My Profile </span>
                     </a>
                 </li>
-                <li>
+                <li class="{{'activities' == request()->path() ? 'current' : ''}}">
                     <a href="/activities">
                         <i class="fa fa-event"></i>
                         <span>Activities </span>

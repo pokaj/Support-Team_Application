@@ -17,6 +17,15 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+Route::get('/dashboard','Main_Controller@index');
+Route::get('/profile','Main_Controller@profile');
+Route::get('/activities','Main_Controller@activities');
+Route::post('/update_info','Main_Controller@update_info');
+Route::post('/add_activity','Main_Controller@add_activity');
+Route::post('/change_status','Main_Controller@change_status');
+Route::post('/complete','Main_Controller@complete');
+Route::post('/delete','Main_Controller@delete');
+
 
 Auth::routes();
 
