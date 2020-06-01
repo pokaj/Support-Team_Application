@@ -76,7 +76,6 @@ $(document).ready(function() {
 });
 
 function complete(activity_id){
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -162,6 +161,7 @@ function delete_activtiy(id) {
         }
     });
 }
+
 
 
 
