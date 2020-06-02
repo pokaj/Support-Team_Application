@@ -174,6 +174,7 @@ class Main_Controller extends Controller
             foreach($query as $data){
                 $output.=
                 '<tr>'.
+                '<td>'.$data->activity_title.'</td>'. 
                 '<td>'.User::find($data->user_id)->first_name .' '. User::find($data->user_id)->last_name .'</td>'.    
                 '<td>'.$data->created_at.'</td>'.
                 '<td>'.$data->activity_status.'</td>'.

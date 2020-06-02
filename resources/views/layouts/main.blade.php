@@ -80,7 +80,7 @@
                 </li>
                 <li class="{{'activities' == request()->path() ? 'current' : ''}}">
                     <a href="/activities">
-                        <i class="fa fa-event"></i>
+                        <i class="fa fa-tasks"></i>
                         <span>Activities </span>
                     </a>
                 </li>

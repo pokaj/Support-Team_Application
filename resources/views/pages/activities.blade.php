@@ -284,6 +284,7 @@
                                                     </form>
                                                     <table class="table text-center table-dark table-hover">
                                                     <thead>
+                                                    <th>Activity</th>
                                                     <th>Activity Created by</th>
                                                     <th>Created at</th>
                                                     <th>Status<th>
