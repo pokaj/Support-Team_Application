@@ -27,7 +27,9 @@ Route::post('/complete','Main_Controller@complete');
 Route::post('/pending','Main_Controller@pending');
 Route::post('/delete','Main_Controller@delete');
 Route::get('/give_remarks/{id}','Main_Controller@give_remarks')->name('give_remarks');
-
+Route::get('/search_details','Main_Controller@search_details');
+Route::get('/query','Main_Controller@query');
+Route::post('/change_avatar','Main_Controller@change_avatar')->name('change_avatar');
 
 
 Auth::routes();

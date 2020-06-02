@@ -112,8 +112,8 @@
                                                                             <a href="" data-toggle="modal" data-target="#{{Auth::user()->id}}{{$activity->id}}"><i class="fa fa-trash text-danger"></i></a>
                                                                         </td>
                                                                     </tr>
-                                                                    <!-- beginning of modal for providing remarks-->
 
+                                                                    <!-- beginning of modal for providing remarks-->
                                                                     <div class="modal fade" id="{{$activity->id}}{{$activity->last_name}}{{$activity->user_id}}">
                                                                         <div class="modal-dialog modal-lg">
                                                                             <div class="modal-content">
@@ -141,70 +141,70 @@
                                                                         </div>
                                                                     </div>
 
-                                                    <!-- beginning of modal for activity description-->
-                                                    <div class="modal fade" id="{{$activity->id}}">
-                                                        <div class="modal-dialog modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <strong>Description</strong><p>{{$activity->activity_description}}</p>
-                                                                    <h6>Created by: </h6><p>{{$activity->first_name}} {{$activity->last_name}}</p>
-                                                                    <h6>Create on: </h6><p>{{$activity->created_at}}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <!-- beginning of modal to change activity status-->
-                                                    <div class="modal fade" id="{{$activity->id}}{{Auth::user()->id}}">
-                                                        <div class="modal-dialog modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <h4>{{$activity->activity_title}}</h4>
-                                                                    <div>
-                                                                        @if(count($last_update) > 0)
-                                                                            @foreach($last_update as $update)
-                                                                                @if($update->id == $activity->id)
-                                                                        <p>The last status update was by: </p>
-                                                                        <p>Name: {{$update->first_name}} {{$update->first_name}}</p>
-                                                                        <p>Position: {{$update->position}}</p>
-                                                                        <p>Date: {{$update->created_at}}</p>
-                                                                        <p>Bio: {{$update->bio}}</p>
-                                                                        <p>Profile Picture: {{$update->avatar}}</p>
-                                                                        <hr>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endif
+                                                                <!-- beginning of modal for activity description-->
+                                                                <div class="modal fade" id="{{$activity->id}}">
+                                                                    <div class="modal-dialog modal-lg">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-body">
+                                                                                <strong>Description</strong><p>{{$activity->activity_description}}</p>
+                                                                                <h6>Created by: </h6><p>{{$activity->first_name}} {{$activity->last_name}}</p>
+                                                                                <h6>Create on: </h6><p>{{$activity->created_at}}</p>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    @if($activity->activity_status == 'pending')
-                                                                    <button onclick="complete({{$activity->id}})" class="btn btn-success">complete activity</button>
-                                                                    @else
-                                                                    <p>Are you sure ou want to revert the status of this activity?</p>
-                                                                    <button onclick="pending({{$activity->id}})"  class="btn btn-danger">revert</button>
-                                                                    @endif
+                                                                </div>
+
+
+                                                            <!-- beginning of modal to change activity status-->
+                                                            <div class="modal fade" id="{{$activity->id}}{{Auth::user()->id}}">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <h4>{{$activity->activity_title}}</h4>
+                                                                            <div>
+                                                                                @if(count($last_update) > 0)
+                                                                                    @foreach($last_update as $update)
+                                                                                        @if($update->id == $activity->id)
+                                                                                <p>The last status update was by: </p>
+                                                                                <p>Name: {{$update->first_name}} {{$update->first_name}}</p>
+                                                                                <p>Position: {{$update->position}}</p>
+                                                                                <p>Date: {{$update->created_at}}</p>
+                                                                                <p>Bio: {{$update->bio}}</p>
+                                                                                <p>Profile Picture: {{$update->avatar}}</p>
+                                                                                <hr>
+                                                                                        @endif
+                                                                                    @endforeach
+                                                                                @endif
+                                                                            </div>
+                                                                            @if($activity->activity_status == 'pending')
+                                                                            <button onclick="complete({{$activity->id}})" class="btn btn-success">complete activity</button>
+                                                                            @else
+                                                                            <p>Are you sure ou want to revert the status of this activity?</p>
+                                                                            <button onclick="pending({{$activity->id}})"  class="btn btn-danger">revert</button>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
 
-                                                    <!-- beginning of modal to delete activity-->
-                                                    <div class="modal fade" id="{{Auth::user()->id}}{{$activity->id}}">
-                                                        <div class="modal-dialog modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-body">
-                                                                    <p>Are you sure you want to delete this activity?</p>
-                                                                    <button onclick="delete_activtiy({{$activity->id}})" class="btn btn-danger">Delete</button>
-                                                                    <button class="btn btn-mute" data-dismiss="modal">Cancel</button>
+                                                            <!-- beginning of modal to delete activity-->
+                                                            <div class="modal fade" id="{{Auth::user()->id}}{{$activity->id}}">
+                                                                <div class="modal-dialog modal-lg">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <p>Are you sure you want to delete this activity?</p>
+                                                                            <button onclick="delete_activtiy({{$activity->id}})" class="btn btn-danger">Delete</button>
+                                                                            <button class="btn btn-mute" data-dismiss="modal">Cancel</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
 
-                                                    @endforeach
-                                                    @endif
+                                                            @endforeach
+                                                            @endif
 
-                                                </tbody>
-                                                </table>
+                                                            </tbody>
+                                                            </table>
 
                                             </div>
                                         </div>
@@ -217,22 +217,38 @@
                                     <div class="row">
                                         <div class="col-lg-8 col-lg-offset-2 detailed mt">
                                             <h4 class="mb">Search Activity</h4>
+                                            <form id="search_details">
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">Select Activity</label>
                                                     <div class="col-lg-6">
                                                         <select class="form-control" id="activity_selected">
-                                                            <option value="1">Select</option>
+                                                            @foreach($activities as $activity)
+                                                            <option value="{{$activity->id}}">{{$activity->activity_title}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-lg-offset-2 col-lg-10">
-                                                        <button class="mt-3 btn btn-theme" type="submit">View Details</button>
+                                                        <button class="mt-3 btn btn-theme">View Details</button>
+                                                        <div>
+                                                        <table class="table text-center table-dark table-hover">
+                                                        <thead>
+                                                        <th>Updated by</th>
+                                                        <th>Changed Status to</th>
+                                                        <th>Date</th>
+                                                        </thead>
+                                                        <tbody id="search_activity">
+                                                        </tbody>
+                                                        </table>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            </form>
                                         </div>
                                         <!-- /col-lg-8 -->
                                     </div>
+                                   <div class="ml-3"><p id="details"></p></div>
                                     <!-- /row -->
                                 </div>
                                 <!-- /tab-pane -->
@@ -243,17 +259,38 @@
                                             <div class="col-lg-12">
                                                 <div class="form-panel">
                                                     <h4 class="mb">Query Activities</h4>
-                                                    <form class="form-inline" role="form">
+                                                    <form class="form-inline" id="query">
                                                         <div class="form-group">
-                                                            <label class="sr-only" for="exampleInputEmail2">Beginning Date</label>
-                                                            <input type="datetime-local" class="form-control" id="beg_date" placeholder="Beginning Date">
+                                                            <label>Beginning Date</label>
+                                                            <select  id="beg_date" class="form-group form-control" placeholder="Beginning Date">
+                                                            @if(count($activities) > 0)
+                                                            @foreach($activities as $activity)
+                                                            <option value="{{ $activity->created_at }}">{{ $activity->created_at }}</option>
+                                                             @endforeach
+                                                            @endif
+                                                            </select>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="sr-only" for="exampleInputPassword2">Ending Date</label>
-                                                            <input type="datetime-local" class="form-control" id="end_date" placeholder="Ending Date">
+                                                            <label >Ending Date</label>
+                                                            <select  id="end_date" class="form-group form-control" placeholder="Beginning Date">
+                                                            @if(count($activities) > 0)
+                                                            @foreach($activities as $activity)
+                                                            <option value="{{ $activity->created_at }}">{{ $activity->created_at }}</option>
+                                                             @endforeach
+                                                            @endif
+                                                            </select>
                                                         </div>
-                                                        <button type="submit" class="btn btn-theme">Search</button>
+                                                        <button class="btn btn-theme">Search</button>
                                                     </form>
+                                                    <table class="table text-center table-dark table-hover">
+                                                    <thead>
+                                                    <th>Activity Created by</th>
+                                                    <th>Created at</th>
+                                                    <th>Status<th>
+                                                    </thead>
+                                                    <tbody id="activity_information">
+                                                    <tbody>
+                                                    </table>
                                                 </div>
                                                 <!-- /form-panel -->
                                             </div>

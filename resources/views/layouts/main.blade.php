@@ -59,8 +59,12 @@
     <aside>
         <div id="sidebar" class="nav-collapse">
             <!-- sidebar menu start-->
-            <ul class="nav sidebar-menu" id="nav-accordion">
-                <p class="centered"><a href="/profile"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+            <ul class="nav sidebar-menu" id="nav-accordion">  
+                @if(Auth::user()->avatar != null)                                                    
+                <p class="centered"><a href="/profile"><img src="img/{{ Auth::user()->avatar }}" class="img-circle" width="80"></a></p>
+                @else
+                <p class="centered"><a href="/profile"><img src="img/no_image.png" class="img-circle" width="80"></a></p>
+                @endif
                 <h5 class="mt-3 centered">Hello {{Auth::user()->username}}</h5>
                 <li class="{{'dashboard' == request()->path() ? 'current' : ''}}">
                     <a href="/dashboard">

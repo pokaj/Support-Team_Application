@@ -46,11 +46,8 @@ class Main_Controller extends Controller
         $last_update = DB::table('updates')
             ->join('activities','activities.id','=','updates.activity_id')
             ->join('users','users.id','=','updates.user_id')
-//            ->get();
             ->select('activities.id','users.first_name','users.last_name','users.position','users.bio','users.avatar','updates.created_at')
             ->get();
-
-//        return $last_update;
 
         return view('pages/activities',compact('activities','remarks','last_update'));
     }
@@ -142,5 +139,65 @@ class Main_Controller extends Controller
         $remarks->remarks = $request->get('remarks');
         $remarks->save();
         return redirect()->back()->with('message','Your remarks have been saved');
+    }
+
+    public function search_details(Request $request){
+        $output = "";
+        $activity_id = $request->get('activity_id');
+        $details = DB::table('updates')
+        ->join('activities','activities.id','=','updates.activity_id')
+        ->join('users','users.id','=','updates.user_id')
+        ->where('updates.activity_id','=',$activity_id)
+        ->get();
+
+        if($details){
+            foreach($details as $detail){
+                $output.=
+                '<tr>'.
+                '<td>'.$detail->first_name.' '.$detail->last_name.'</td>'.    
+                '<td>'.$detail->activity_status.'</td>'.
+                '<td>'.$detail->created_at.'</td>'.
+                '</tr>';
+            }
+            return Response($output);
+
+        }
+    }
+
+    public function query(Request $request){
+        $output = "";
+        $beginning_date = $request->get('beg_date');
+        $ending_date = $request->get('end_date');
+
+        $query = Activity::whereBetween('created_at', [$beginning_date, $ending_date])->get();
+        if($query){
+            foreach($query as $data){
+                $output.=
+                '<tr>'.
+                '<td>'.User::find($data->user_id)->first_name .' '. User::find($data->user_id)->last_name .'</td>'.    
+                '<td>'.$data->created_at.'</td>'.
+                '<td>'.$data->activity_status.'</td>'.
+                '</tr>';
+            }
+            return Response($output);
+
+        }
+    }
+
+    public function change_avatar(Request $request){
+        $this->validate($request,[
+            'picture' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $image = $request->file( 'picture');
+        $image_name = $image->getClientOriginalName();
+        DB::table('users')
+            ->where('id','=',Auth::user()->id)
+            ->update([
+                'avatar' => $image_name,
+            ]);
+        $image->move(public_path("img"),$image_name);
+        return back()
+            ->with('message','Image uploaded successfully');
     }
 }

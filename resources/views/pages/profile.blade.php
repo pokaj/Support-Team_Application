@@ -22,15 +22,61 @@
             <div class="row mt">
                 <div class="col-lg-8">
                     <div class="row content-panel">
+                    {{--                Success Message--}}
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
 
                         <!-- /col-md-4 -->
+{{-- 
+                          <div class="col-md-4 centered">
+                                <form method="post" enctype="multipart/form-data" action={{ route('change_avatar') }}>
+                                    {{csrf_field()}}
+                                    <div class="row">
+                                        @if(Auth::user()->avatar != null)
+                                            <div class="col-xs-6">
+                                                <img src="/img/{{Auth::user()->avatar}}" height="50" class="img-fluid d-block rounded-circle">
+                                            </div>
+                                        @endif
+                                        <div>
+                                            @if(Auth::user()->avatar == null)
+                                               <img src="img/no_image.png" height="90"/>
+                                            @endif
+                                            <p class="text-center text-muted">  Image Format: jpeg| jpg|  png</p>
+                                        </div>
+                                        <div class="col-xs-6 mt-3">
+                                            <input class="form-control search-input" type="file" name="picture" required>
+                                        </div>
+                                        <div class="col-xs-6 mt-3">
+                                            <button class="btn btn-primary float-right">Upload</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div> --}}
+
                         <div class="col-md-4 centered">
                             <div class="profile-pic">
-                                <p><img src="img/ui-sam.jpg" class="img-circle"></p>
-                                <p>
-                                </p>
+                                @if(Auth::user()->avatar == null)
+                                    <img src="img/no_image.png" class="rounded-circle mr-3">
+                                @else
+                                <img src="img/{{Auth::user()->avatar}}" alt="avatar" class="rounded-circle">
+                                @endif                                
+                        
+                        
                             </div>
-                        </div>
+
+                            <form method="post" enctype="multipart/form-data" action={{ route('change_avatar') }}>
+                            {{csrf_field()}}
+                                <input type="file" name="picture" class="form-control" required>
+                                <p class="mt-3 ml-5 text-center text-muted">  Image Format: jpeg| jpg|  png</p>
+                                <button class="btn btn-primary pull-right">Update Avatar</button>
+                            </form>
+
+                        </div> 
+                        
 
                         <!-- /col-md-4 -->
                         <div class="col-md-4 profile-text">

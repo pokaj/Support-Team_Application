@@ -73,6 +73,56 @@ $(document).ready(function() {
             }
         })
     })
+
+    $('#search_details').on('submit',function (e){
+        e.preventDefault();
+        let activity_id = $('#activity_selected').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type:'get',
+            url:'/search_details',
+            data:{activity_id:activity_id},
+            success:function (response){
+                document.getElementById('search_activity').innerHTML = response;
+
+                
+            }
+        })
+
+    });
+
+
+    $('#query').on('submit',function (e){
+        e.preventDefault();
+        let beg_date = $('#beg_date').val();
+        let end_date = $('#end_date').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type:'get',
+            url:'/query',
+            data:{
+                beg_date:beg_date,
+                end_date:end_date
+            },
+            success:function(response){
+                document.getElementById('activity_information').innerHTML = response;
+            }
+        })
+
+
+    })
 });
 
 function complete(activity_id){
