@@ -109,7 +109,6 @@
                                                                                 label-mini">{{$activity->activity_status}}</span></td>
                                                                         <td>
                                                                             <a href="" data-toggle="modal" data-target="#{{$activity->id}}{{Auth::user()->id}}"><i class="fa fa-edit"></i></a>
-                                                                            <a href="" data-toggle="modal" data-target="#{{Auth::user()->id}}{{$activity->id}}"><i class="fa fa-trash text-danger"></i></a>
                                                                         </td>
                                                                     </tr>
 
@@ -182,19 +181,6 @@
                                                                             <p>Are you sure ou want to revert the status of this activity?</p>
                                                                             <button onclick="pending({{$activity->id}})"  class="btn btn-danger">revert</button>
                                                                             @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- beginning of modal to delete activity-->
-                                                            <div class="modal fade" id="{{Auth::user()->id}}{{$activity->id}}">
-                                                                <div class="modal-dialog modal-lg">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-body">
-                                                                            <p>Are you sure you want to delete this activity?</p>
-                                                                            <button onclick="delete_activtiy({{$activity->id}})" class="btn btn-danger">Delete</button>
-                                                                            <button class="btn btn-mute" data-dismiss="modal">Cancel</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
